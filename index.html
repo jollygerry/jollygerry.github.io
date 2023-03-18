@@ -1,182 +1,163 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KAST INDEX</title>
+    <title>Pediatric Antibiotic Dose Check</title>
     <meta charset = "UTF-8"/>
-    <!--<link rel="stylesheet" href="style.css">-->
-    <!--<script src="main.js" defer></script>-->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      :root {
-        --maui_gradient: linear-gradient(
-        135deg,
-        #845ec2,
-        #d65db1,
-        #ff6f91,
-        #ff9671,
-        #ffc75f,
-        #f9f871
-       );
-       --nightshift_gradient: linear-gradient(
-       135deg,
-       #000000,
-       #121212,
-       #2b2b2b,
-       #3a3b3a,
-       #4a4a4a,
-       #575757
-       );
-      }
       body {
-        /*background-image: var(--maui_gradient);
-        background-size: 400%;
-        animation: bg-animation 10s infinite alternate;*/
-      }
-      @keyframes bg-animation {
-        0% {background-position: left}
-        100% {background-position: right}
-      }
-      main {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Montserrat';
-        /*background-image: url("https://cdn.wallpapersafari.com/88/66/Uowyg0.jpg");*/
-        background-image: url("../ROVR/images/space_wallpaper.jpeg");
+        font-family: "Montserrat", sans-serif;
+        color: white;
+        background-image: url(https://www.teahub.io/photos/full/118-1189775_cartoon-sunset-sky-background.jpg);
+        background-repeat: no-repeat;
         background-size: cover;
-        background-position: center;
-        height: 100vh;
-      }
-      .main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 400px;
-        width: 600px;
-        /*border: 2px solid black;*/
-        border-radius: 5px;
-        margin: calc(50vh - 150px) 0px calc(50vh - 150px) 0px;
-        transition-duration: 0.07s;
-        background-image: var(--nightshift_gradient);
-        background-size: 300%;
-        animation: bg-animation 10s infinite alternate;
-      }
-      .main:hover {
-        box-shadow: 0 0 40px 10px;
-        background-image: var(--maui_gradient);
-        background-size: 300%;
-        animation: bg-animation 10s infinite alternate;
+        background-attachment: fixed; 
       }
       h1 {
-        margin: -50px 0px -80px 0px;
-        font-size: 250px;
-        color: #fa07a5;
-        /*-webkit-text-stroke: 2px black;*/
+        margin: 20px 0px 50px 0px;
+        font-size: 50px;
       }
-      form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border: 2px solid black;
-        border-radius: 5px;
-        background-color: white;
-        transition: 0.1s;
+      label {
+        font-size: 25px;
       }
-      form:hover {
-        box-shadow: 0 0 20px;
+      select {
+        height: 45px;
+        width: 250px;
+        font-size: 25px;
+        font-family: "Montserrat"
       }
       input {
-        margin: 5px;
-        border-radius: 5px;
-        font-family: 'Montserrat';
-      }
-      .email, .password1, .password2 {
+        height: 45px;
         width: 250px;
-        border-radius: 5px;
-        font-family: 'Montserrat';
-      }
-      .usertype-container {
-        margin: 5px;
-      }
-      .usertype-option {
-        display: inline-block;
-        padding: 6px 12px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        cursor: pointer;
-        user-select: none;
-      }
-      .usertype-option.selected {
-        background-color: black;
-        color: #fff;
-        border: 1px solid #fa07a5;
+        font-size: 25px;
+        font-family: "Montserrat";
       }
       button {
-        height: 35px;
-        width: 100px;
-        margin: 10px;
-        font-family: 'Montserrat';
-        border: 1px solid #fa07a5;
-        border-radius: 5px;
+        height: 45px;
+        width: 125px;
+        border: 1px solid white;
         color: white;
-        background-color: black;
+        background-color: #3f2a85;
         font-size: 20px;
+        font-family: "Montserrat";
         transition-duration: 0.15s;
       }
       button:hover {
         color: black;
-        border: 1px solid white;
         background-color: white;
         box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e600db, 0 0 20px #e600db, 0 0 25px #e600db, 0 0 30px #e600db, 0 0 35px #e600db;
       }
-      /*.radio-option.selected::before {
-        content: "\2022";
-        font-size: 24px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }*/
-      
+      #outputDiv {
+        height: 50vw;
+        padding: 20px 0px 0px 0px;
+        font-size: 25px;
+      }
+      #space1 {
+        height: 20px;
+      }
+      #space2 {
+        height: 20px;
+      }
+      #disclaimer {
+        font-size: 10px;
+        position: fixed;
+        bottom: 0;
+      }
     </style>
   </head>
   <body>
+      <h1>Pediatric Antibiotic Dose Check</h1>
+    <form id="getDose">
+      <label for="antibiotics">Choose Antibiotic: </label>
+        <select name="antibiotics" id="antibiotics">
+          <option value="amoxicillin">amoxicillin</option>
+          <option value="amox-clav">amox-clav</option>
+          <option value="azithromycin">azithromycin</option>
+          <option value="cefdinir">cefdinir</option>
+          <option value="cephalexin">cephalexin</option>
+          <option value="oseltamivir">oseltamivir</option>
+      </select><br>
+    <div id="space1"></div>
+    <label for="weight">Enter patient's weight: </label>
+    <input id="weight" type="text" placeholder="Weight (kg)"></input><br>
+    <div id="space2"></div>
+    <button id="btn" type="submit">Calculate!</button>
+    </form>
+    <div id="outputDiv">
+      
+    </div>
     <header>
     </header>
-    <main>
-      <div class="main">
-        <h1 data-text="kast">KAST</h1>
-        <form id = "signup">
-            <input class="input email" type="text" placeholder="Email">
-            <input class="input password1"type="text" placeholder="Password">
-            <input class="input password2" type="text" placeholder="Confirm Password">
-          <div class="input usertype-container">
-            <div class="usertype-option" data-value="influencer">Influencer</div>
-            <div class="usertype-option" data-value="brand">Brand</div>
-          </div>
-            <button class="input button" type="submit">Sign Up</button>
-        </form>
-      </div>
-    </main>
-    
     <script>
-      var usertypeOptions = document.querySelectorAll('.usertype-option');
-  for (var i = 0; i < usertypeOptions.length; i++) {
-    usertypeOptions[i].addEventListener('click', function() {
-      // Remove the 'selected' class from all other options
-      for (var j = 0; j < usertypeOptions.length; j++) {
-        usertypeOptions[j].classList.remove('selected');
+      var form = document.getElementById('getDose');
+      form.addEventListener('submit', runCalc)
+      function runCalc(e) {
+        e.preventDefault();
+        var newAntibiotic = document.getElementById('antibiotics').value;
+        var newWeight = document.getElementById('weight').value;
+        var outputDiv = document.getElementById('outputDiv');
+        
+        if (newAntibiotic == 'amoxicillin' && newWeight >= 5) {
+          if (newWeight*90 < 4000) {
+            var output = Math.round(newWeight*80) + " - " + Math.round(newWeight*90) + " mg per day (" + Math.round((((newWeight*80/2)/400)*5) * 10)/10 + " - " + Math.round((((newWeight*90/2)/400)*5) * 10) /10 + " mL per dose if using Amoxicillin 400mg/5mL and BID dosing)";
+          }
+          else {
+            var output = "4000 mg per day (25 mL per dose if using Amoxicillin 400mg/5mL and BID dosing)(max dose reached)";
+          }
       }
-      // Add the 'selected' class to the clicked option
-      this.classList.add('selected');
-    });
-  }
+        else if (newAntibiotic == 'amox-clav' && newWeight >= 5){
+          if(newWeight*90 < 4000){
+            var output = Math.round(newWeight*90) + " mg per day based on amoxicillin component"
+          }
+          else {
+            var output = "4000 mg per day based on amoxicillin component (max dose reached)"
+          }
+        }
+        else if (newAntibiotic == 'cephalexin') {
+          if(newWeight*100 < 4000){
+            var output = Math.round(newWeight*25) + " - " + Math.round(newWeight*50) + " and up to " + Math.round(newWeight*100) + " mg per day in 2 - 4 divided doses"
+          }
+          else {
+            var output = "4000 mg per day in 2 - 4 divided doses (max dose reached - may be 2 g based on indication)"
+          }
+        }
+        else if (newAntibiotic == 'cefdinir') {
+          if(newWeight*14 < 600){
+            var output = Math.round(newWeight*14) + " mg per day in 1 - 2 divided doses"
+          }
+          else {
+            var output = "600 mg per day in 1 -2 divided doses (max dose reached)"
+          }
+        }
+        else if (newAntibiotic == 'azithromycin') {
+          if(newWeight*10 < 500){
+            var output = Math.round(newWeight*10) + " mg on day 1 followed by " + Math.round(newWeight*5) + " mg per day on days 2 - 5"
+          }
+          else {
+            var output = "500 mg on day 1 followed by 250 mg per day on days 2 - 5 (max dose reached)"
+          }
+        }
+        else if (newAntibiotic == 'oseltamivir'){
+          if (newWeight <= 15){
+            var output = "30 mg (5 mL) twice daily for 5 days if treatment dosage or 30 mg once daily for 10 days if prophylaxis dosage" + " (if patient is under 1 year old, treatment dose should be 3 mg/kg twice daily for 5 days (ppx not appropriate))"
+          }
+          else if (newWeight <= 23){
+            var output = "45 mg (7.5 mL) twice daily for 5 days if treatment dosage or 45 mg once daily for 10 days if prophylaxis dosage" + " (if patient is under 1 year old, treatment dose should be 3 mg/kg twice daily for 5 days (ppx not appropriate))"
+          }
+          else if (newWeight <= 40){
+            var output = "60 mg (10 mL) twice daily for 5 days if treatment dosage or 60 mg once daily for 10 days if prophylaxis dosage"
+          }
+          else {
+            var output = "75 mg (12.5 mL) twice daily for 5 days if treatment dosage or 75 mg once daily for 10 days if prophylaxis dosage"
+          }
+        }
+        else {
+          var output = "uh"
+        }
+        
+        outputDiv.innerHTML = output;
+      }
     </script>
+    <div id="disclaimer"><p>Disclaimer: Dosing values displayed are intended to serve as a general reference, not to dose antibiotcs for specific patients and indications.</p></div>
   </body>
 </html>
