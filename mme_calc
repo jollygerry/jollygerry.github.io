@@ -117,11 +117,14 @@
           font-size: 50px;
         }
         #ped_dose_calc {
-          font-size: 10px;
+          font-size: 25px;
           position: fixed;
           bottom: 0;
-          margin: 0px 0px 7px 0px;
-          z-index: 999;
+          margin: 0px 0px 10px 0px;
+        }
+        a {
+          text-decoration: none;
+          color: white;
         }
       </style>
       </head>
@@ -148,10 +151,8 @@
           </div>
           <div id="outputDiv"></div>
         </div>
-        <header>
-        </header>
         <div id="ped_dose_calc">
-          <button id="btn2">Ped Dose Checker</button>
+          <button id="btn2"><a href="index.html">Ped Dose Checker</a></button>
         </div>
         <script>
           var form = document.getElementById('getDose');
